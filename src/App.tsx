@@ -1,25 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import { StyledChangeColorButton } from './Button';
+import { StyledColorBlock } from './Circle'
 
-function App() {
+function App(): JSX.Element {
+  const colors: string[] = ['red', 'brown', 'lightgreen', 'yellow', 'green', 'orange', 'purple', 'blue'];
+
+  const [areaColor, setAreaColor] = useState('white');
+
+  function changeToRandomColor() {
+    setAreaColor(colors[Math.floor(Math.random() * colors.length)]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <StyledColorBlock fill={areaColor}>{areaColor}</StyledColorBlock>
+      <StyledChangeColorButton onClick={changeToRandomColor}>change color</StyledChangeColorButton>
+    </>
   );
 }
 
